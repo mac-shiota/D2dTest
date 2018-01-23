@@ -1,0 +1,47 @@
+*.png binary
+*.jpg binary
+*.dll binary
+*.lib binary
+*.exe binary
+*.ico binary
+*.sdf binary
+*.pdb binary
+*.cur binary
+*.ngtfx binary
+*.psd binary
+*.pdf binary
+*.rtf binary
+*.ngtgui text eol=crlf
+*.sln text eol=crlf
+*.hpp text eol=crlf
+*.cpp text eol=crlf
+*.h text eol=crlf
+*.cs text eol=crlf
+*.resx text eol=crlf
+*.csproj text eol=crlf
+*.vcproj text eol=crlf
+*.vcxproj text eol=crlf
+*.bat text eol=crlf
+*.js text eol=crlf
+*.config text eol=crlf
+*.settings text eol=crlf
+*.json text eol=crlf
+*.shd text eol=crlf
+*.sty text eol=crlf
+*.svg binary
+*.mcr text eol=crlf
+*.grp text eol=crlf
+*.vor text eol=crlf
+*.lic binary
+*.md text eol=crlf
+*.html text eol=crlf
+*.mhtml text eol=crlf
+*.txt text eol=crlf
+*.xml text eol=crlf
+*.vdproj binary
+*.rtf binary
+
+*.sh text eol=lf 
+*.doxyfile text eol=lf
+
+*.iss text eol=lf diff=sjis
