@@ -150,16 +150,47 @@ class D2DtestClass
 		if(SUCCEEDED(hr))
 		{	// ターゲットサイズの取得
 			D2D1_SIZE_F oTargetSize = pD2DRenderTarget->GetSize();
-		
-			float rx = oTargetSize.width / 2;
-			float ry = oTargetSize.height / 2;
-    
-			D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(rx, ry), rx, ry);
-    
-			ID2D1SolidColorBrush* brush;
-			pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Orange), &brush);
-			pD2DRenderTarget->FillEllipse(ellipse, brush);
-			brush->Release();
+			D2D1_RECT_F oTargetRect ={ 0, 0, oTargetSize.width, oTargetSize.height };
+
+			// float rx = oTargetSize.width / 2;
+			// float ry = oTargetSize.height / 2;
+    		// 
+			// D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(rx, ry), rx, ry);
+    		// 
+			// ID2D1SolidColorBrush* brush;
+			// pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Orange), &brush);
+			// pD2DRenderTarget->FillEllipse(ellipse, brush);
+			// brush->Release();
+
+
+			ID2D1LinearGradientBrush *m_pLinearGradientBrush;
+			// Create an array of gradient stops to put in the gradient stop
+			// collection that will be used in the gradient brush.
+			ID2D1GradientStopCollection *pGradientStops = NULL;
+
+			D2D1_GRADIENT_STOP gradientStops[2];
+			gradientStops[0].color = D2D1::ColorF(D2D1::ColorF::Yellow, 1);
+			gradientStops[0].position = 0.0f;
+			gradientStops[1].color = D2D1::ColorF(D2D1::ColorF::ForestGreen, 1);
+			gradientStops[1].position = 1.0f;
+			// Create the ID2D1GradientStopCollection from a previously
+			// declared array of D2D1_GRADIENT_STOP structs.
+			hr = pD2DRenderTarget->CreateGradientStopCollection(
+			    gradientStops,
+			    2,
+			    D2D1_GAMMA_2_2,
+			    D2D1_EXTEND_MODE_CLAMP,
+			    &pGradientStops);
+
+			hr = pD2DRenderTarget->CreateLinearGradientBrush(
+				D2D1::LinearGradientBrushProperties(
+				D2D1::Point2F(0, 0),
+				D2D1::Point2F(oTargetSize.width, oTargetSize.height)),
+				pGradientStops,
+				&m_pLinearGradientBrush);
+
+			pD2DRenderTarget->FillRectangle(&oTargetRect, m_pLinearGradientBrush);
+		//	pD2DRenderTarget->DrawRectangle(&rcBrushRect, m_pBlackBrush, 1, NULL);
 		}
 
 		// 描画終了(Direct2D)
