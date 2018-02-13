@@ -80,7 +80,7 @@ class D2DtestClass
 
 			D2D1_RENDER_TARGET_TYPE	types[ ]	=
 			{	D2D1_RENDER_TARGET_TYPE_HARDWARE,
-				D2D1_RENDER_TARGET_TYPE_DEFAULT,
+				D2D1_RENDER_TARGET_TYPE_DEFAULT,	// 01 ◎
 				D2D1_RENDER_TARGET_TYPE_SOFTWARE
 			};
 
@@ -91,14 +91,14 @@ class D2DtestClass
 				DXGI_FORMAT_R32G32B32A32_SINT,
 				DXGI_FORMAT_R16G16B16A16_TYPELESS,
 				DXGI_FORMAT_R16G16B16A16_FLOAT,
-				DXGI_FORMAT_R16G16B16A16_UNORM,
+				DXGI_FORMAT_R16G16B16A16_UNORM,		// 06 ◎   4 成分、64 ビット符号なし整数フォーマット
 				DXGI_FORMAT_R16G16B16A16_UINT,
 				DXGI_FORMAT_R16G16B16A16_SNORM,
 				DXGI_FORMAT_R16G16B16A16_SINT
 			};
 
 			D2D1_ALPHA_MODE	alpha[ ]	=
-			{	D2D1_ALPHA_MODE_UNKNOWN,
+			{	D2D1_ALPHA_MODE_UNKNOWN,			// 01 ◎
 				D2D1_ALPHA_MODE_PREMULTIPLIED,
 				D2D1_ALPHA_MODE_STRAIGHT,
 				D2D1_ALPHA_MODE_IGNORE
@@ -110,8 +110,8 @@ class D2DtestClass
 				for(int dd=0; dd<sizeof(digif)/sizeof(DXGI_FORMAT); dd++)
 				{	for(int aa=0; aa<=sizeof(alpha)/sizeof(D2D1_ALPHA_MODE); aa++)
 					{	props.pixelFormat	= D2D1::PixelFormat(
-							digif[dd],		// DXGI_FORMAT_R16G16B16A16_UNORM,	// DXGI_FORMAT_B8G8R8A8_UNORM,
-							alpha[aa]);		// D2D1_ALPHA_MODE_IGNORE);
+							digif[dd],
+							alpha[aa]);
 
 						hr	= pD2DFactory->CreateWicBitmapRenderTarget(
 							pWICBitmap,
